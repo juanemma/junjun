@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(20,70,20);
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-wrapper {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .head-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .head-container img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .head-container h1 {
+            margin: 10px 0 0 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        form p {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-wrapper">
+        <div class="head-container">
+            <img src="https://mpsu.edu.ph/wp-content/uploads/2024/12/cropped-cropped-MPSU-Logo-3.png" alt="MPSU Logo">
+            <h1>REGISTRATION FORM</h1>
+        </div>
+        <form name="RegForm" onsubmit="return validateForm()" onreset="resetErrors()">
+            <p>
+                <label for="name">Username:</label>
+                <input type="text" id="name" name="Name" placeholder="Enter your full name" />
+                <span id="name-error" class="error-message"></span>
+            </p>
+            <p>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="Address" placeholder="Enter your address" />
+                <span id="address-error" class="error-message"></span>
+            </p>
+            <p>
+                <label for="email">E-mail Address:</label>
+                <input type="text" id="email" name="EMail" placeholder="Enter your email" />
+                <span id="email-error" class="error-message"></span>
+            </p>
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="Password" />
+                <span id="password-error" class="error-message"></span>
+            </p>
+            <p>
+                <label for="contact">Contact #:</label>
+                <input type="number" id="contact" name="contact" />
+                <span id="contact-error" class="error-message"></span>
+            </p>
+            <p>
+                <label for="subject">Select Your Course:</label>
+                <select id="subject" name="Subject">
+                    <option value="">Select Course</option>
+                    <option value="IT">IT</option>
+                    <option value="EDUCATION">EDUCATION</option>
+                    <option value="NURSING">NURSING</option>
+                    <option value="HM">HM</option>
+                    <option value="TM">TM</option>
+                    <option value="BSA">BSA</option>
+                    <option value="BSOA">BSOA</option>
+                    <option value="BSCRIM">BSCRIM</option>
+                </select>
+                <span id="subject-error" class="error-message"></span>
+            </p>
+            <p>
+                <label for="comment">College Name:</label>
+                <select id="comment" name="Comment">
+                    <option value="SELECT COURSE">SELECT COURSE:</option>
+                    <option value="CABMIT">CABMIT</option>
+                    <option value="CHE">CHE</option>
+                    <option value="CHISTM">CHISTM</option>
+                    <option value="CTE">CTE</option>
+                    <option value="CCJPS">CCJPS</option>
+                </select>
+            </p>
+            <p>
+                <input type="checkbox" id="agree" name="Agree" />
+                <label for="agree">I agree to the above information</label>
+                <span id="agree-error" class="error-message"></span>
+            </p>
+            <p>
+                <input type="submit" id="submit-btn" value="Submit" name="Submit" />
+                <input type="reset" value="Reset" name="Reset" />
+            </p>
+        </form>
+    </div>
+
+<script>
+function validateForm() {
+    const name = document.getElementById("name").value.trim();
+    const addr = document.getElementById("address").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const pass = document.getElementById("password").value;
+    const sub = document.getElementById("subject").value;
+    const agree = document.getElementById("agree").checked;
+    const contact = document.getElementById("contact").value.trim();
+
+    const nameErr = document.getElementById("name-error");
+    const addrErr = document.getElementById("address-error");
+    const emailErr = document.getElementById("email-error");
+    const passErr = document.getElementById("password-error");
+    const subErr = document.getElementById("subject-error");
+    const agreeErr = document.getElementById("agree-error");
+    const conErr = document.getElementById("contact-error");
+
+    // Clear previous errors
+    nameErr.textContent = "";
+    addrErr.textContent = "";
+    emailErr.textContent = "";
+    passErr.textContent = "";
+    subErr.textContent = "";
+    agreeErr.textContent = "";
+    conErr.textContent = "";
+
+    let isValid = true;
+
+    if (name === "" || /\d/.test(name) || name.length > 12) {
+        nameErr.textContent = "Please enter your username (max 12 letters, no numbers).";
+        isValid = false;
+    }
+
+    if (contact === "" || !/^\d{11}$/.test(contact)) {
+        conErr.textContent = "Please enter a valid 11-digit contact number.";
+        isValid = false;
+    }
+
+    if (addr === "") {
+        addrErr.textContent = "Please enter your address.";
+        isValid = false;
+    }
+
+    if (email === "" || !email.includes("@") || !email.includes(".")) {
+        emailErr.textContent = "Please enter a valid email address.";
+        isValid = false;
+    }
+
+    if (
+        pass === "" ||
+        !/(?=.*[a-z])/.test(pass) ||
+        !/(?=.*[A-Z])/.test(pass) ||
+        !/(?=.*\d)/.test(pass) ||
+        !/(?=.*[!@#$%^&*(),.?":{}|<>])/.test(pass) ||
+        pass.length < 8
+    ) {
+        passErr.textContent = "Password must be at least 8 characters with uppercase, lowercase, number, and special character.";
+        isValid = false;
+    }
+
+    if (sub === "") {
+        subErr.textContent = "Please select your course.";
+        isValid = false;
+    }
+
+    if (!agree) {
+        agreeErr.textContent = "Please agree to the above information.";
+        isValid = false;
+    }
+
+    if (isValid) {
+        alert("Form submitted successfully!");
+        window.location.href = "homepage.html";
+        return false; 
+    }
+
+    return false;
+}
+
+function resetErrors() {
+    document.getElementById("name-error").textContent = "";
+    document.getElementById("address-error").textContent = "";
+    document.getElementById("email-error").textContent = "";
+    document.getElementById("password-error").textContent = "";
+    document.getElementById("subject-error").textContent = "";
+    document.getElementById("agree-error").textContent = "";
+    document.getElementById("contact-error").textContent = "";
+}
+</script>
+</body>
+</html>

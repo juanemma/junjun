@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+        body {
+      background-color: #03741b;
+      color: #333;
+    }
+
+    header {
+      background-color: #007119;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #aec900;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+     .section {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+      margin-top: 30px;
+
+    }
+    .gallery h3{
+      padding: 10px;
+      background-color: #aec900;
+      border-radius: 10px;
+    }
+
+    .gallery img {
+      width: 450px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin: 30px;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .team{
+      display: flex;
+            border: 3px solid#aec900;
+      border-radius: 10px;
+      padding: 0 70px;
+    }
+    .team .description{
+      text-align: left;
+      border-radius: 20px;
+      background-color: #aec900;
+      padding-left: 20px;
+    }
+    .team h3{
+      text-decoration: underline;
+      text-shadow: #333;
+    }
+
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .lightbox span {
+      color: white;
+      font-size: 2rem;
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .section{
+      text-align: center;
+      align-content: center;
+    }
+.extra {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  margin-top: 30px;
+  width: 100%;
+
+}
+
+.extra img {
+  width: 500px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+
+}
+
+.extra img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.extra h3{
+  background-color: #aec900;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+    footer {
+      background-color: #bcbf07;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+    header {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+header img {
+  display: block;       
+  width: 100%;         
+  height: 200px;        
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+  </style>
+  
+
+<body>
+     <header>
+     <img src="https://mpsu.edu.ph/wp-content/uploads/2025/01/dec_2024.jpg">
+  </header>
+  <nav>
+    <a href="homepage.html">Home</a>
+    <a href="#about">About</a>
+    <a href="gallerypage.html">Gallery</a>
+    <a href="#contact">Contact</a>
+    <form class="search">
+      <input class="search-bar" type="search" placeholder="Search...." aria-label="search" style="border: 2px solid black; border-radius: 5px;">
+      <button class="search-button" type="submit" style="border: 1px solid black; border-radius: 5px;">Search</button>
+    </form>
+  </nav>
+
+  <section class="section" id="gallery">
+    <h1 style="font-family: garamond; font-size: 50px;">Mountain Province State University</h1>
+    <h2>Past Event Gallery</h2>
+    <p>Take a look at some highlights from our previous Intramurals.</p>
+
+    <div class="gallery">
+      <div class="team blue-wolves">
+        <img src="https://scontent.fmnl13-4.fna.fbcdn.net/v/t39.30808-6/553581674_122164140950610169_3324246633695982743_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHHprPtsvf1ciyLPCSBVBrUBtpth6vVLqsG2m2Hq9Uuq0JY76c210tObq7TyQ5VLk3nzp449hlnsZHy1PyXUlC9&_nc_ohc=3-5jahmEhisQ7kNvwFRuM5t&_nc_oc=AdkfxxPvmnH8u5wPOZwMgU8vatRKmAevTC-WbNZK7j2939ASqVEUt6slDPrBALa1xJMwC8VtXrkLdGoTIs1ydG0U&_nc_zt=23&_nc_ht=scontent.fmnl13-4.fna&_nc_gid=sMJFEAPvCYzma21K_11eUQ&oh=00_Afd4-WtDRjs4N-PmEj7gSLNy6XamT4Hpj5ugIvlJMsYvMQ&oe=690805F2" alt="pic 1">
+        <div class="description">
+      <h3>BLUE WOLVES</h3>
+      <p>The Blue Wolves embody strength, unity, and relentless spirit. Like a wolf pack, we move together — every player supports the next, every effort builds the team. The color blue represents loyalty, determination, and calm under pressure. Whether on offense or defense, we stand our ground and fight with heart. Fierce, focused, and fearless — we are the Blue Wolves.</p>
+    </div>    
+    </div>
+      <div class="team wild falcons">
+      <img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/553064931_122164140914610169_9157227180464209974_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFaKbDw3F0GvbWZKtTAh2PxzjVBPEeYamXONUE8R5hqZeXFGEZJ41sQ-SwCoXVluAVVMe9K7fEnXixAGrJ-Cyv2&_nc_ohc=hI105qNTfaQQ7kNvwGNWiFT&_nc_oc=AdnmiUUND4VoE1rgv7SajoPQMdjAMbQKy_MtNTpxknhYWG4yGayLJetH6GXj72cqroXvIus5mjCvr6B4rU9-T0-_&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=ikoZReSTD8pxnV4JcnVFuQ&oh=00_AfcGN5a969GXI4rsq96BE5hHP0q1KQNiYytXiKUtyLiYSA&oe=6908239C" alt="pic 2">
+      <div class="description">
+        <h3>WILD FALCONS</h3>
+        <p>
+          The <strong>Wild Falcons</strong> soar high with courage and speed. We strike fast, think smart, and never back down. With our wings spread wide, we dominate the skies — fearless, focused, and free-spirited.
+        </p>
+      </div>
+    </div>
+      <div class="team crimson-knights">
+        <img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/554871943_122164140908610169_2886541991432897277_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeENr0FYYRIWhWSQHWhhgNpp94k8bmnNrAb3iTxuac2sBtUJxtU7A4cb0Ey9m-_WD4tg7MN0mu6cytL-3_yWpExc&_nc_ohc=rCrikg-x8SAQ7kNvwEdgR44&_nc_oc=AdkATfyXLFSPcEBspIBSCF6xgiCxJfAfq4r2iuNcWr3imL1CwPB-beypPtas5zuhR-zlwc0mwjQ6zAgMr6MIFvBx&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=ZdK2gizLg4_RjwjzGYS7kA&oh=00_AfekkctjqTMLoguKd3TNfDMgmyiUbelHeDsmk60jFQiphw&oe=6907FC8E" alt="pic 3">
+        <div class="description">
+          <h3>CRIMSON KNIGHTS</h3>
+          <p>
+          The <strong>Crimson Knights</strong> fight with honor, courage, and discipline. Clad in red, we stand as defenders of victory — strong, bold, and unyielding in the face of any challenge.
+        </p>
+        </div>
+      </div>
+     <div class="team blazing-phoenix">
+      <img src="https://scontent.fmnl13-4.fna.fbcdn.net/v/t39.30808-6/553004798_122164140668610169_8345934580113948234_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeESOsTcYC56Zj686jwv0SZ81EtGecITk7fUS0Z5whOTt_wbkqSQ6GTZ8yqgLlurWD7pCAVpN_q32C55NM0MeKAH&_nc_ohc=oNdxp6To9VcQ7kNvwHdTGnQ&_nc_oc=AdluiFyGogdsp8Xbr99rEDlcAYw1cACMIEPIm5kcQ5DLOQVVcfgWCwARTWQXFamtCp1Z5EboboYCuF76x3n0qNvg&_nc_zt=23&_nc_ht=scontent.fmnl13-4.fna&_nc_gid=VGRRrHEMTTm1wP4UnhDwXw&oh=00_AfctwoUpMci8XHKf6j8x5-GsgRtNKP723V61ZuLk80oQrA&oe=69080F7A" alt="pic 4">
+    <div class="description">
+      <h3>BLAZING PHOENIX</h3>
+        <p>
+          Rising from the ashes, the <strong>Blazing Phoenix</strong> represents rebirth, resilience, and fire. Every loss fuels our next victory — we rise, stronger and brighter than before.
+        </p>
+
+    </div>
+    </div>
+             <div class="team white-pythons">
+      <img src="https://scontent.fmnl13-4.fna.fbcdn.net/v/t39.30808-6/554794520_122164140806610169_1410273021233667976_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHc-YvKtQjpUaQMG8DpB2oVl1FeUfQhCbaXUV5R9CEJtg2SIx-T4w4mg8g7Wm0LIReMpt5sB9uBY3oTKfJx_lsX&_nc_ohc=nbxmAaRvOw8Q7kNvwGkg0sh&_nc_oc=AdnaiLD3tdyn9k5zLs1ni7jCOs5-LU8DYipO5Epkskjw9zWnOZjZycC-55ervDVVRNY1Mv1oRxy2p4vffWhFuc7v&_nc_zt=23&_nc_ht=scontent.fmnl13-4.fna&_nc_gid=ievTd5Mxiexdi7JvFfYOvQ&oh=00_AfjzsPbrDOXDOqaDdaEU8qeKCTTIG85flcrYV6V_yi9dGg&oe=690FA20F" alt="pic 4">
+    <div class="description">
+      <h3>WHITE PYTHONS</h3>
+        <p>
+          The <strong>White Pythons </strong>are known for their strength, discipline, and precision. Like their namesake, they strike with calculated moves and unstoppable energy. Their teamwork and resilience make them a powerful force on the court and field. Dressed in white, they symbolize purity, unity, and determination, ready to take on any challenge that comes their way.
+        </p>
+    </div>
+    </div>
+                     <div class="team green-hornets">
+      <img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/552811708_122164141754610169_3455647060578130308_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFwy67P-sN4NS7AG01nQVZLFtW87n54CWkW1bzufngJac9eryzQ9mE-uhmroInDKQgvpKusCfjsqVH3oW7cVAve&_nc_ohc=Vj1b5VEBknQQ7kNvwE4hdVY&_nc_oc=AdkcsFrejxZ5_OwdvkmsjLKGPg_suAdcowWz3Ur_zuHXdEqKIYy8_35RpA3WqFxoIaf1o_fP5DkAV4kmVdffqE-3&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=eFTkhGrETEtBHVC2b-BX8g&oh=00_Afj7FHJuOXHmcVFQ3G5CiFX7-Q2-fwOU-xS2-X76cqRAzw&oe=690F9C51" alt="pic 4">
+    <div class="description">
+      <h3>GREEN HORNETS</h3>
+        <p>
+          The <STRONG>Green Hornets</STRONG> bring speed, agility, and fierce competitiveness to every game. Just like real hornets, they move with purpose—swift, strategic, and always ready to sting the competition. Clad in vibrant green, they represent growth, energy, and teamwork, embodying the spirit of sportsmanship and relentless drive to win.
+        </p>
+    </div>
+    </div>
+        
+        <hr>
+        
+        <div class="extra">
+          <h3><b>HIGHLIGHTS</b></h3>
+          <div class="container text-center">
+  <div class="row row-cols-2">
+    <div class="col"><img src="https://scontent.fmnl13-4.fna.fbcdn.net/v/t39.30808-6/558057194_122164747526610169_2116529482397630744_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE0Cw7Sx9XEL6O1an5RvAl_HVQveZCmgYYdVC95kKaBhsBr4PyxnJxIGuZ7Fta6sP9Tsmy1qHnHZOhflKeVv-TB&_nc_ohc=_7wyjrQACL8Q7kNvwE6K5m0&_nc_oc=AdkQdG1GVVhZtDqa1e4iSQJAvd2WLaqXQJomfzks6GY1gzKdVoZy4V6cP12z89xvEluqvngPUXdS03VksnKb8vRj&_nc_zt=23&_nc_ht=scontent.fmnl13-4.fna&_nc_gid=MFw_OAC9WhHVYAXTT31VJg&oh=00_Afj9kW0jUeE3L3gvHlGJF7uh3NE8rA02AjF2rNs-95jnzw&oe=690FB93A"> </div>
+    <div class="col"><img src="https://scontent.fmnl13-4.fna.fbcdn.net/v/t39.30808-6/556633739_122164747520610169_4997123885111501790_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGmY0D1WZ0--HP2Ruqu-5DbhTVuJE_PgASFNW4kT8-ABJfux21AIo5Cp0QdS-DSkdPiRxTP3VIeXcsUfy-9AjQx&_nc_ohc=Ue2HdbRyZbgQ7kNvwFqd9KQ&_nc_oc=AdkD8vdIfHQEesDmZWvtfYWPWuxwNF6KDYjsTaaVSGpEvsgqrb-9qeeuQVjXM_9tB84LdKfZDUbpCUZMbOAJcDP3&_nc_zt=23&_nc_ht=scontent.fmnl13-4.fna&_nc_gid=1okhtPC9gS5_dkxmu1BNHA&oh=00_AfiHYYhVsSE9dc4WVU0yXSbXewNVQwDEaKP8oA8eBDm3HQ&oe=690F9942"></div>
+    <div class="col"><img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/557604746_122164747340610169_2002773495435738704_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGohl65tnX_zR6Nlm0NFPbVMG4E57F3uXIwbgTnsXe5cn6GTQBOpiybzSS_PZ0gEs7gll2Mw12ONsTZfMzH6XV5&_nc_ohc=TdU0Rk6tfjwQ7kNvwGnG-gy&_nc_oc=AdnLQM0syF_YFywvdVbnYMyW21wK8dlgDcz8czFPENsn_aDtKZ7ggvEuossPUuTs4v3XBUbfV7y-EA_VCYFXTu19&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=O_Ztc80nLpTtW5AjkONMTQ&oh=00_AfgsBtn2WxXcVwjmEpsvD9NMelvPP5-6SWg3Jj5VmpL8AA&oe=690FA0BC"></div>
+    <div class="col"><img src="https://scontent.fmnl13-4.fna.fbcdn.net/v/t39.30808-6/556906205_122164747334610169_4181695529912529048_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEdC95D3n-R5P65pMNRl7kDXzyWQ8NRP0ZfPJZDw1E_Rtfk5EqbAbsc31LPXx_fjVQPuJK0H417M-gX1JpOBYJe&_nc_ohc=r-JijPlB0UoQ7kNvwFlYodR&_nc_oc=AdmJIYGggkc9FhC1jKDFxA48Ijc1ctqQ5_DDO1-lacJ5XL0UQ7766cu2dp79rzKmVUSYwT7ViKnQwDDLdYmoWowu&_nc_zt=23&_nc_ht=scontent.fmnl13-4.fna&_nc_gid=EkUJI5GpKn19sgIJZf2D0Q&oh=00_AfjoLwv0xmWYl5uVF0HGqrLiel_rBzEmpechBheNZYWuEQ&oe=690FAB56"></div>
+  </div>
+</div>
+      
+      <img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/557144760_122164747328610169_4075739990225535568_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFQ9zisdlWXuMUO6g_ZhKpfrq_ATtQ_v1Kur8BO1D-_UvbCHGRvIYQaVjPgetlwI5YFXcktfhHh6b4bziXMpili&_nc_ohc=Gqj0ZnYNyiUQ7kNvwGVB0k3&_nc_oc=AdkVxwi8EJOCoGf0CWcFxtEjcjkcW2JsZgu2SwxXnB0ByfhHrC7jx9DSQVQ8P0DDRJM0sUVmGmF00RHGrcsVMV5t&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=qkADbTjTTZ_tUZZujFhjEA&oh=00_Afflsusfwp6FwX1bRiVS49ZqGncsKYQzQEbo9HOlTSGnwg&oe=69082B8D" alt="pic 6">
+      <img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/557273369_122164748372610169_8144190280848687545_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEFmJgTOsFUgfod6WdPg-FzILYNQ9tCkTcgtg1D20KRN-2DgqZlkTkQ8Llzfljr6qCJVxXt_x0pVX6KHIWquyzT&_nc_ohc=lW5eeey1yjsQ7kNvwGxvC5z&_nc_oc=Adk0u_xXWFr4l7LlcDnjAA9Y7BDRUFZJ4dPGPwQhCBKgDvItD6D03hMaV6x8Omrzd0QPjKGCR5SLA6nF_paficCQ&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=NBKKU30KxxPOBuYTs68_sA&oh=00_AfjpCuMvhbWI2FPzdMUYdO0svq4ZYDK28J90Flfn7LV8Ww&oe=690F9F0B" alt="pic 5">
+    </div>
+  
+  <hr>
+  </section>
+    <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: Mountain Province State University@gmail.com</p>
+    <p>Facebook: https://www.facebook.com/mpsu1969</p>
+  </section>
+
+
+  <div class="lightbox" id="lightbox">
+    <span id="close">&times;</span>
+    <img id="lightbox-img" src="" alt="Expanded View">
+  </div>
+  </body>
+  <hr>
+    <footer>
+    <p>&copy; 2025 MPSU Intramurals. All Rights Reserved.</p>
+  </footer>
+<script>
+
+  const galleryImages = document.querySelectorAll('.gallery img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.getElementById('close');
+
+  galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target !== lightboxImg) {
+      lightbox.style.display = 'none';
+    }
+  });
+
+ 
+  const searchForm = document.querySelector('.search');
+  const searchInput = document.querySelector('.search-bar');
+  const teams = document.querySelectorAll('.team');
+
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const query = searchInput.value.toLowerCase().trim();
+
+    teams.forEach(team => {
+      const text = team.innerText.toLowerCase();
+      if (text.includes(query)) {
+        team.style.display = 'flex';
+      } else {
+        team.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+  </html>
