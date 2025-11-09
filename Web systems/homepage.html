@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+  crossorigin="anonymous"
+/>
+  <title>Intramurals 2025 | Event Homepage</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #03741b;
+      color: #333;
+    }
+
+    header {
+      background-color: #007119;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #aec900;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+   .hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+}
+
+
+.hero .carousel,
+.hero .carousel-inner,
+.hero .carousel-item,
+.hero .carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45); 
+  z-index: 1;
+}
+
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+}
+
+.hero-content .btn {
+  display: inline-block;
+  background-color: #ffcc00;
+  color: #003d99;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero-content .btn:hover {
+  background-color: #ffd633;
+}
+
+
+
+    .btn {
+      display: inline-block;
+      background-color: #ffcc00;
+      color: #003d99;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #ffd633;
+    }
+    #about{
+      text-align: center;
+    }
+    #contact{
+      text-align: center;
+    }
+   
+
+    footer {
+      background-color: #bcbf07;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+        header {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+header img {
+  display: block;       
+  width: 100%;         
+  height: 200px;        
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+     .section {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+      margin-top: 30px;
+
+    }
+    .gallery h3{
+      padding: 10px;
+      background-color: #aec900;
+      border-radius: 10px;
+    }
+
+    .gallery img {
+      width: 450px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin: 30px;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .team{
+      display: flex;
+            border: 3px solid#aec900;
+      border-radius: 10px;
+      padding: 0 70px;
+    }
+    .team .description{
+      text-align: left;
+      border-radius: 20px;
+      background-color: #aec900;
+      padding-left: 20px;
+    }
+    .team h3{
+      text-decoration: underline;
+      text-shadow: #333;
+    }
+
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .lightbox span {
+      color: white;
+      font-size: 2rem;
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .section{
+      text-align: center;
+      align-content: center;
+    }
+    #contact {
+      background-color: white;
+      border-radius: 50px;
+    }
+    #contact p,h2{
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+         
+     <img src="https://mpsu.edu.ph/wp-content/uploads/2025/01/dec_2024.jpg">
+  
+  </header>
+
+  <nav>
+    <a href="homepage.html">Home</a>
+    <a href="#about">About</a>
+    <a href="gallerypage.html">Gallery</a>
+    <a href="#contact">Contact</a>
+    <form class="search">
+      <input class="search-bar" type="search" placeholder="Search...." aria-label="search" style="border: 2px solid black; border-radius: 5px;">
+      <button class="search-button" type="submit" style="border: 1px solid black; border-radius: 5px;">Search</button>
+    </form>
+  </nav>
+
+
+<section class="hero">
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="HOMEPAGE/homapage 1.jpg" class="d-block w-100" alt="Intramurals Image 1">
+      </div>
+      <div class="carousel-item">
+        <img src="HOMEPAGE/homepage 2.jpg" class="d-block w-100" alt="Intramurals Image 2">
+      </div>
+      <div class="carousel-item">
+        <img src="HOMEPAGE/homepage 3.jpg" class="d-block w-100" alt="Intramurals Image 3">
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <h1>Welcome to MPSU Intramurals 2026</h1>
+    <p>Join us for a 3-day celebration of Laughter, Camaraderie, and Competitions</p>
+    <a href="Registration.html" class="btn">Register Now</a>
+  </div>
+</section>
+
+
+  <section class="section" id="about">
+    <h2>About the Event</h2>
+    <p>The University’s Bontoc campus commenced its 2025 Intramurals Sports Fest with a bang today, 25 September 2025, as students and personnel colored the streets of Bontoc with a parade and an opening ceremony held at the Eyeb Covered Gym. Originally slated for 22-24 September 2025, it was rescheduled due to Super Typhoon Nando.
+Bearing the theme “Brewing Strength, Building Unity: Sports and Culture in Action,” six competing teams, namely, Crimson Knights (College of International Hospitality and Sustainable Tourism Management), Blazing Phoenix (College of Accountancy, Business Management and  Information Technology), White Pythons (College of Healthcare Education), Green Hornets (College of Criminal Justice Education and Liberal Arts), Blue Wolves (College of Teacher Education) and Wild Falcons (College of Advanced Education) participated in this year’s intramurals.
+Indigenous and sports games were in full swing after chants and screams filled the opening ceremonies.<br><br>
+In his inspirational message delivered by VP for Internationalization, Planning and Information Management Atty. Dexter C. Lingbanan, University President Dr. Edgar G. Cue challenged the participants to prove that the event is “more than a contest, but a celebration of discipline, camaraderie, and the indomitable spirit of youth.”
+“Talent winds games, but teamwork and character win championships,” he added.
+The intramurals will run until Saturday, 27 September 2025.</p>
+  </section>
+  
+  <section class="section" id="gallery">
+    <h1 style="font-family: garamond; font-size: 50px;">Mountain Province State University</h1>
+    <h3 style="font-family: 'Times New Roman', Times, serif;">2025 Intramurals</h3>
+
+    <div class="gallery">
+      <div class="team blue-wolves">
+        <img src="GALLERY PAGE/blue wolves.jpg" alt="pic 1">
+        <div class="description">
+      <h3>BLUE WOLVES</h3>
+      <p>The Blue Wolves embody strength, unity, and relentless spirit. Like a wolf pack, we move together — every player supports the next, every effort builds the team. The color blue represents loyalty, determination, and calm under pressure. Whether on offense or defense, we stand our ground and fight with heart. Fierce, focused, and fearless — we are the Blue Wolves.</p>
+    </div>    
+    </div>
+      <div class="team wild falcons">
+      <img src="GALLERY PAGE/wild falcons.jpg" alt="pic 2">
+      <div class="description">
+        <h3>WILD FALCONS</h3>
+        <p>
+          The <strong>Wild Falcons</strong> soar high with courage and speed. We strike fast, think smart, and never back down. With our wings spread wide, we dominate the skies — fearless, focused, and free-spirited.
+        </p>
+      </div>
+    </div>
+      <div class="team crimson-knights">
+        <img src="GALLERY PAGE/crimson knights.jpg" alt="pic 3">
+        <div class="description">
+          <h3>CRIMSON KNIGHTS</h3>
+          <p>
+          The <strong>Crimson Knights</strong> fight with honor, courage, and discipline. Clad in red, we stand as defenders of victory — strong, bold, and unyielding in the face of any challenge.
+        </p>
+        </div>
+      </div>
+     <div class="team blazing-phoenix">
+      <img src="GALLERY PAGE/blazing phoenix.jpg" alt="pic 4">
+    <div class="description">
+      <h3>BLAZING PHOENIX</h3>
+        <p>
+          Rising from the ashes, the <strong>Blazing Phoenix</strong> represents rebirth, resilience, and fire. Every loss fuels our next victory — we rise, stronger and brighter than before.
+        </p>
+
+    </div>
+    </div>
+             <div class="team white-pythons">
+      <img src="GALLERY PAGE/white pythons.jpg" alt="pic 4">
+    <div class="description">
+      <h3>WHITE PYTHONS</h3>
+        <p>
+          The <strong>White Pythons </strong>are known for their strength, discipline, and precision. Like their namesake, they strike with calculated moves and unstoppable energy. Their teamwork and resilience make them a powerful force on the court and field. Dressed in white, they symbolize purity, unity, and determination, ready to take on any challenge that comes their way.
+        </p>
+    </div>
+    </div>
+                     <div class="team green-hornets">
+      <img src="GALLERY PAGE/green hornets.jpg" alt="pic 4">
+    <div class="description">
+      <h3>GREEN HORNETS</h3>
+        <p>
+          The <STRONG>Green Hornets</STRONG> bring speed, agility, and fierce competitiveness to every game. Just like real hornets, they move with purpose—swift, strategic, and always ready to sting the competition. Clad in vibrant green, they represent growth, energy, and teamwork, embodying the spirit of sportsmanship and relentless drive to win.
+        </p>
+    </div>
+    </div>
+        
+  </section>
+
+
+
+
+
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: Mountain Province State University@gmail.com</p>
+    <p>Facebook: https://www.facebook.com/mpsu1969</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MPSU Intramurals. All Rights Reserved.</p>
+  </footer>
+
+   <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+  <script>
+    
+
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('close');
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg) {
+        lightbox.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
