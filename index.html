@@ -1,44 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ITP 322 - Group 1 Map</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITP 322 - Advanced Geocoding</title>
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        #map { height: 500px; width: 100%; border: 2px solid #333; margin-top: 15px; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f4f4f9; }
-        .controls { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        input { padding: 8px; width: 250px; border: 1px solid #ccc; border-radius: 4px; }
-        button { padding: 8px 15px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        button:hover { background: #0056b3; }
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg-color);
+        }
+
+        #map { 
+            height: 100vh; 
+            width: 100%; 
+            z-index: 1;
+        }
+
+        /* Floating Search UI */
+        .search-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 500px;
+            background: var(--card-bg);
+            padding: 8px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            display: flex;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .search-container input {
+            flex: 1;
+            border: none;
+            padding: 12px 16px;
+            font-size: 15px;
+            outline: none;
+            background: transparent;
+            color: #1e293b;
+        }
+
+        .search-container button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .search-container button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .search-container button:active {
+            transform: translateY(0px);
+        }
+
+        /* Branding Badge */
+        .brand-badge {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Custom Popup Styling */
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            padding: 5px;
+        }
+        
+        .leaflet-popup-tip {
+            display: none; /* Cleaner look */
+        }
     </style>
 </head>
 <body>
-    <div class="controls">
-        <h2>Group 1: Geocoding System</h2>
-        <input type="text" id="addressInput" placeholder="Search (e.g., Bontoc, Baguio)">
-        <button onclick="handleSearch()">Search Location</button>
+
+    <div class="brand-badge">ITP 322 | Group 1 Geocoder</div>
+
+    <div class="search-container">
+        <input type="text" id="addressInput" placeholder="Where would you like to go?">
+        <button onclick="handleSearch()">Search</button>
     </div>
     
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Initialize the map centered on Bontoc (MPSU Campus area)
-        const map = L.map('map').setView([17.088, 120.982], 13);
+        // Initialize map with a nicer "CartoDB Positron" light theme for a cleaner look
+        const map = L.map('map', {
+            zoomControl: false // Hide default zoom buttons for a cleaner UI
+        }).setView([17.088, 120.982], 13);
 
-        // Add the Map Tiles (The actual images of the streets)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
+        // Using a cleaner tile set (CartoDB Light)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CartoDB'
         }).addTo(map);
+
+        // Add zoom control back in a better position
+        L.control.zoom({ position: 'bottomright' }).addTo(map);
 
         let marker;
 
         async function handleSearch() {
+            const btn = document.querySelector('button');
             const address = document.getElementById('addressInput').value;
-            if (!address) return alert("Please enter an address");
+            
+            if (!address) return;
+
+            // Simple visual feedback
+            btn.innerText = "Searching...";
+            btn.style.opacity = "0.7";
 
             try {
-                // Call your FastAPI Backend
                 const response = await fetch(`http://127.0.0.1:8000/api/v1/geocode?address=${address}`, {
                     headers: { 'Authorization': 'Bearer itp322_secret_token' }
                 });
@@ -47,27 +155,23 @@
                     const result = await response.json();
                     const { lat, lng, address: fullAddress } = result.data;
 
-                    // Update Map View
-                    map.setView([lat, lng], 15);
+                    map.flyTo([lat, lng], 15, { duration: 1.5 });
                     
-                    // Remove old marker if it exists
                     if (marker) map.removeLayer(marker);
                     
-                    // Add new marker
                     marker = L.marker([lat, lng]).addTo(map)
-                        .bindPopup(`<b>Result:</b><br>${fullAddress}`)
+                        .bindPopup(`<div style="padding:10px"><strong>Location Found:</strong><br>${fullAddress}</div>`)
                         .openPopup();
-                } else if (response.status === 429) {
-                    alert("Rate Limit Exceeded! Please wait a minute.");
                 } else {
-                    alert("Location not found or Unauthorized.");
+                    alert("Location not found. Please check your FastAPI server.");
                 }
             } catch (err) {
-                console.error(err);
-                alert("Could not connect to FastAPI server. Is it running?");
+                alert("Connection failed. Ensure your FastAPI backend is running on port 8000.");
+            } finally {
+                btn.innerText = "Search";
+                btn.style.opacity = "1";
             }
         }
     </script>
 </body>
 </html>
-
